@@ -1,7 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import axios from "axios";
 
-export default function Home() {
+function Home({ data }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -27,6 +28,13 @@ export default function Home() {
             <p>------愿有前程可奔赴，亦有岁月可回首</p>
           </div>
         </div>
+        <div className="contentBox">
+          <ul>
+            {data &&
+              data.length &&
+              data.map((item) => <li key={item.id}>{item.title}</li>)}
+          </ul>
+        </div>
       </div>
 
       <footer className={styles.footer}>
@@ -41,3 +49,22 @@ export default function Home() {
     </div>
   );
 }
+
+export async function getStaticProps() {
+  const res = await axios
+    .get("http://localhost:8081/blog/mdList", {
+      params: {
+        page: 1,
+        pageSize: 10,
+      },
+    })
+    .then((res) => res.data);
+
+  return {
+    props: {
+      data: res.data,
+    },
+  };
+}
+
+export default Home;

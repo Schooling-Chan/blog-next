@@ -59,6 +59,7 @@
     transition: all 0.5s ease-out 0s;
     opacity: 1;
     transform: translate(0, 0);
+    margin-bottom: .5rem;
 }
 
 .imgBox_title p {
@@ -70,6 +71,15 @@
     transition-delay: 0.5s;
     opacity: 1;
     transform: translate(0, 0);
+}
+
+.contentBox {
+    margin: 0 auto;
+    width: 35rem;
+}
+
+.contentBox ul {
+    width: 15rem;
 }
 
 @media screen and (max-width: 980px) {
